@@ -1,0 +1,21 @@
+
+variables:
+	{balance::%player%} = 0
+
+
+on load:
+	if folder "plugins/VaultSK/" doesn't exists:
+		create folder "plugins/VaultSK"
+	if file "plugins/VaultSK/config.yml" doesn't exists:
+		create file "plugins/VaultSK/config.yml"
+	if file "plugins/VaultSK/accounts.yml" doesn't exists:
+		create file "plugins/VaultSK/accounts.yml"
+	if file "plugins/VaultSK/worth.yml" doesn't exists:
+		create file "plugins/VaultSK/worth.yml"
+	set "Options.Economy.Enabled" to "true" in yaml file "plugins/VaultSK/config.yml"
+	set "Options.Prefix.PluginName" to "&4[&eVault&cSK&4]" in yaml file "plugins/VaultSK/config.yml"
+	
+#Saves the player's balance to the /plugins/VaultSK/accounts.yml	
+on quit:
+	set "Accounts.Economy.%player%" to "Current Balance: $%{balance::%player%}%" in yaml file "plugins/VaultSK/accounts.yml"
+	
